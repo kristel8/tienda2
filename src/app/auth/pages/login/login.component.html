@@ -1,0 +1,26 @@
+<section class="login">
+  <form (ngSubmit)="iniciarSesion()" [formGroup]="loginForm">
+  <h2>Iniciar Sesión</h2>
+    <div class="form">
+      <span class="form-text">Usuario:</span>
+      <input id="usuario" type="text" formControlName="usuario" pInputText />
+      <div *ngIf="usuario?.invalid && (usuario?.dirty || usuario?.touched)">
+        <small *ngIf="usuario?.errors?.['required']" class="p-error">Usuario es obligatorio</small>
+      </div>
+    </div>
+    <div class="form">
+      <span class="form-text">Contraseña:</span>
+      <input id="contrasena" type="password" formControlName="contrasena" pInputText />
+      <div *ngIf="contrasena?.invalid && (contrasena?.dirty || contrasena?.touched)">
+        <small *ngIf="contrasena?.errors?.['required']" class="p-error">Contraseña es obligatorio</small>
+      </div>
+    </div>
+    <br>
+    <app-button
+    [label]="'Ingresar'"
+    (eventoClick)="iniciarSesion()"
+    [tipo]="'submit'"
+    [isDisabled]="!loginForm.valid"
+  ></app-button>
+  </form>
+</section>

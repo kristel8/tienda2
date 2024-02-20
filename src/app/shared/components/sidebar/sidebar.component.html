@@ -1,0 +1,54 @@
+<aside class="td-sidebar">
+  <header class="td-sidebar-header">
+    <!-- <img src="" alt="" /> -->
+    <div class="header-title">Tienda</div>
+
+    <!-- <div class="header-image"></div>
+
+    <section class="header-user">
+      <div class="header-option"></div>
+      <div class="header-user__details">
+        <span
+          ><b>{{ Usuario.nombre }}</b></span
+        >
+        <small>{{ Usuario.rol }}</small>
+      </div>
+      <div class="header-option"></div>
+    </section> -->
+  </header>
+
+  <nav class="td-sidebar-nav">
+    <ul>
+      <li
+        *ngFor="let item of Menu"
+        [ngClass]="item.estado ? 'item-actived' : ''"
+      >
+        <a
+          *ngIf="item.ruta != ''"
+          [routerLink]="[item.ruta]"
+          (click)="eventoMostrarSubMenu(item.nombre, true)"
+          >{{ item.nombre }}</a
+        >
+        <a
+          *ngIf="item.ruta == ''"
+          (click)="eventoMostrarSubMenu(item.nombre, true)"
+          >{{ item.nombre }}</a
+        >
+
+        <ul *ngIf="item.subMenu != [] && item.estado">
+          <li
+            *ngFor="let subItem of item.subMenu"
+            [ngClass]="subItem.estado ? 'subItem-actived' : ''"
+          >
+            <a
+              [routerLink]="[subItem.ruta]"
+              (click)="eventoSeleccionado(subItem.nombre, true)"
+            >
+              {{ subItem.nombre }}</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
